@@ -9,7 +9,32 @@ spring:
     username: root
     password: 123456
     #schema: classpath:db/schema.sql
-    data: classpath:db/data.sql
+    #data: classpath:db/data.sql
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 配置初始化大小、最小、最大
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      # 配置获取连接等待超时的时间 毫秒
+      max-wait: 60000
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      # StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: admin
+        allow: 127.0.0.1
   h2:
     console:
       enabled: true #进行该配置，程序开启时就会启动h2 web consloe。当然这是默认的，如果你不想在启动程序时启动h2 web consloe，那么就设置为false。
@@ -21,3 +46,4 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update  #设置ddl模式
+

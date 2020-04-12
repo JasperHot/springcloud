@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
           userJpaRepository.delete(user);
     }
 
-    public Collection<User> getUsers(){
+    @Override
+    public Collection<User> getUsers() {
         return userJpaRepository.findAll();
     }
 }

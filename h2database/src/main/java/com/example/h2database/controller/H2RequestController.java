@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.Collection;
 
 @Slf4j
 @RestController
@@ -28,6 +29,7 @@ public class H2RequestController {
         log.info("###1Found### user name("+user.getName()+") sex("+user.getSex()+") age("+user.getAge()+")");
         return user;
     }
+
     @GetMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.FOUND)
     public User getUser2(@PathVariable("userId")Long userId) {
@@ -35,6 +37,17 @@ public class H2RequestController {
         log.info("###2Found### user name("+user.getName()+") sex("+user.getSex()+") age("+user.getAge()+")");
         return user;
     }
+
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.FOUND)
+    public Collection<User> getUsers(){
+        Collection<User> users=userService.getUsers();
+        for(User user:users){
+            log.info("###3Found### user name("+user.getName()+") sex("+user.getSex()+") age("+user.getAge()+")");
+        }
+        return users;
+    }
+
     @DeleteMapping("/user/{userId}")
     public void delete(@PathVariable("userId")Long userId){
         User user=userService.getUser(userId);
