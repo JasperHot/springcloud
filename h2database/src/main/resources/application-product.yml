@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   datasource:
@@ -8,8 +8,8 @@ spring:
     driverClassName: org.h2.Driver
     username: root
     password: 123456
-    #schema: classpath:db/schema.sql
-    #data: classpath:db/data.sql
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       # 配置初始化大小、最小、最大
